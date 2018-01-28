@@ -2,22 +2,45 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Timer</title>
+	<script src="https://use.fontawesome.com/ee2b940546.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="shortcut icon" type="image/png" href="Timer.ico"/>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-	<p id="timer">
-	<span id="hour">00</span>:
-	<span id="minutes">00</span>:
-	<span id="seconds">00</span></p>
+	<div class="container text-center">
+		<div class="row justify-content-center">
+			<div class="col">
+				<div class="row my-4 justify-content-center">
+					<div class="col-4">	
+						<input type="text" placeholder="Usándolo para..." class="form-control">
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-8">		
+						<hr>
+					</div>
+				</div>
+				<p id="timer" class="my-4 h3">
+				<span id="hour">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span></p>
 
-	<p>Time in seconds:</p>
+				<p>Tiempo en segundos:</p>
+				<div class="row justify-content-center mb-2">
+					<div class="col-3">
+						<input type="number" value="900" id="numberInput" class="form-control">
+					</div>
+				</div>
+				<button type="button" id="start" class="mt-1 btn btn-primary btn-lg"><i class="fa fa-play" aria-hidden="true"></i></button>
+			</div>
+		</div>
 
-	<input type="number" value="845" id="numberInput">
+	</div>
 
-	<button type="button" id="start">Start</button>
+	<!-- SCRIPTS -->
 
 	<script>
 		var active = false;
@@ -32,10 +55,10 @@
 			if (active == false){
 				timeInSeconds = $("#numberInput").val();
 				active = true;
-				$("#start").text("Stop");
+				$("#start").html("<i class=\"fa fa-pause\" aria-hidden=\"true\"></i>");
 			} else {
 				active = false;
-				$("#start").text("Start");
+				$("#start").html("<i class=\"fa fa-play\" aria-hidden=\"true\"></i>");
 				$("#hour").text("00");
 				$("#minutes").text("00");
 				$("#seconds").text("00");
@@ -48,7 +71,7 @@
 			if (timeInSeconds <= 0) {
 				sound.play();
 				active = false;
-				$("#start").text("Start");
+				$("#start").html("<i class=\"fa fa-play\" aria-hidden=\"true\"></i>");
 				$("#hour").text("00");
 				$("#minutes").text("00");
 				$("#seconds").text("00");
@@ -85,5 +108,8 @@
 		}
 		
 	</script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

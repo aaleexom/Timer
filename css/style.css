@@ -1,0 +1,22 @@
+* {
+	margin:0;
+	padding: 0;
+}
+
+.vFull {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.pvFull {
+	height: 100%;
+}
+
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+	width: 100%;
+}
