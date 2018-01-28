@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Timer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<p id="timer">
+	<span id="hour">00</span>:
+	<span id="minutes">00</span>:
+	<span id="seconds">00</span></p>
+
+	<p>Time in seconds:</p>
+
+	<input type="number" value="845" id="numberInput">
+
+	<button type="button" id="start">Start</button>
+
+	<script>
+		var active = false;
+		var timeInSeconds = 0;
+		var hour = 0;
+		var minutes = 0;
+		var seconds = 0;
+		var sound = new Audio('https://aaleexom.github.io/sounds/timer.mp3');
+		sound.volume = 0.75;
+
+		$("#start").click(function (){
+			if (active == false){
+				timeInSeconds = $("#numberInput").val();
+				active = true;
+				$("#start").text("Stop");
+			} else {
+				active = false;
+				$("#start").text("Start");
+				$("#hour").text("00");
+				$("#minutes").text("00");
+				$("#seconds").text("00");
+				timeInSeconds = $("#numberInput").val();
+			}
+			timer();
+		});
+
+		function timer(){
+			if (timeInSeconds <= 0) {
+				sound.play();
+				active = false;
+				$("#start").text("Start");
+				$("#hour").text("00");
+				$("#minutes").text("00");
+				$("#seconds").text("00");
+				timeInSeconds = $("#numberInput").val();
+			} else {
+					if (active == true){
+					if (timeInSeconds > 3600){
+						hour = parseInt(timeInSeconds / 3600);
+					}
+					if (timeInSeconds > 60){
+						minutes = parseInt((timeInSeconds - (hour * 3600)) / 60);
+					}
+					if (timeInSeconds >= 0) {
+						seconds = timeInSeconds - ((hour * 3600) + (minutes * 60));
+					}
+
+					if (hour.toString().length < 2){
+						hour = "0" + hour;
+					}
+					if (minutes.toString().length < 2){
+						minutes = "0" + minutes;
+					}
+					if (seconds.toString().length < 2){
+						seconds = "0" + seconds;
+					}
+
+					$("#hour").text(hour);
+					$("#minutes").text(minutes);
+					$("#seconds").text(seconds);
+					timeInSeconds--;
+					setTimeout(timer, 1000);
+				}
+			}
+		}
+		
+	</script>
+</body>
+</html>
